@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//queue
+//circular queue
+#define limit 10
+int queue[10];
+int *pushptr = queue;
+int *popptr = queue;
+//endcases
+int *endofqueue = &queue[limit-1];
+int *reset = &queue[0];
+
+void push(int val)
+{
+  //end condition of puspptr: reset the pushptr to address 0  and only push if
+  //atleast 2 memory location available: one to store data and other for pointer to point to
+ if(pushptr == endofqueue)
+ {
+   if(popptr > &queue[1])
+   {
+     pushptr = reset; 
+     *(pushptr++) = val; 
+     return ;
+   }
+   //if nothing is popped
+   fprintf(stderr, "Queue is full !\n");
+   return;
+ }
+  //if push is smaller than pop: only push if memory is avalibale for complete push
+  // i.e. atleast 2 memory location available: one to store data
+  //and other for pointer to point at
+  if(pushptr < popptr)
+ {
+    if(pushptr == (popptr -1))
+    {
+      fprintf(stderr, "Queue is full !\n");
+      return;
+    }else 
+    {
+     *(pushptr++) = val; 
+      return;  
+    }    
+}
+  //default condition
+*(pushptr++) = val; 
+ return; 
+}
+
+int pop()
+{
+  //what if pop == push? stop popping
+ if(pushptr == popptr){
+   fprintf(stderr, "Queue is empty !\n");
+   return -1;
+ }
+  //reset it at the end of queue and pop is pushtr is greater than poptr
+  if(popptr == endofqueue){
+   popptr = reset; 
+   if(pushptr>popptr)
+   {
+     int pop = *(popptr++);
+     return pop;
+   }
+ }
+   
+  int pop = *(popptr++);
+  return pop;
+}
+
+int main()
+{
+ for(int i = 0; i<limit-1; i++)
+ {
+ push(i);
+ }
+
+ for(int i = 0; i<2; i++)
+ {
+ printf("Pop : %d\n", pop());
+ }
+  
+}

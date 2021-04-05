@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+/*
+//Author: Harsh Dubey
+//Accepts two pointers : Void pointers: A and B
+//Number of byte comapre
+//Compare em byte by byte 
+//return 0 if each byte is equal 
+//retunr 1 if A is greater than B 
+//return -1 if A is smaller than B
+
+*/
+
+int memcompare(void*ptr1, void*ptr2, long unsigned int size)
+{
+  char*byte1 = (char*)ptr1;
+  char*byte2 = (char*)ptr2;
+  
+  for(int i =0; i < size; i++)
+  {
+    if(i[byte1] == i[byte2])
+    {
+      i++;
+      continue;
+    }
+    if(i[byte1] > i[byte2])
+    return 1;
+    if(i[byte1] < i[byte2])
+    return -1;
+  }
+  return 0;
+}
+
+int main() {
+
+  
+int a = 300;
+char b = 44;
+  
+int x = memcompare(&a,&b, sizeof(b));
+  
+if(x == 0)
+  printf("Memory Equal!!\n");
+else if(x > 0)
+  printf("A > B!!\n");
+else
+  printf("A < B!!\n");
+  
+
+}

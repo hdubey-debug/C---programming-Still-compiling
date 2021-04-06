@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+
+/*
+//Author: Harsh Dubey
+//Accepts two pointers : Void pointers: A(destination) and B(Source)
+//Accepts number of bytes that needs to be copied
+*/
+
+void memcopy(void*ptr1, void*ptr2, long unsigned int size)
+{
+  char*byted = (char*)ptr1;
+  char*bytes = (char*)ptr2;
+  
+  for(int i = 0; i< size; i++)
+  {
+    i[byted] = i[bytes]; 
+  }
+}
+
+int main() {
+
+  
+int a[] = {1,2,3,4,5};
+int b[] = {300,302,303};
+  
+ memcopy(&a,&b, sizeof(short));
+  
+for(int i = 0; i< sizeof(a)/sizeof(a[0]); i++)
+  {
+    printf("%d ", a[i]);
+  }
+
+}

@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+/*
+//Author: Harsh Dubey
+//Accepts a pointer to a data structure
+//Accepts an integer value to set 
+//Accepts an size-t number of bytes
+//Accepts an Index
+//returns an int: 1 for overflow and -1 for underflow
+
+*/
+
+int memsetx(void*ptr, int value, unsigned long size, int index )
+{
+  
+  char*byte = (char*)ptr;
+  
+  //check for overflow and underflow 
+  if(value > 127)
+    return 1;
+  if(value < -128)
+    return -1;
+  //
+  for(int i =0; i< size; i++)
+  {
+    i[byte+index] = value; 
+  }
+  return 0;
+}
+
+
+int main() {
+
+
+int a[] = {300,1,2}, x = 0;
+  
+
+  x = memsetx(&a,-9, 1, 4 );
+  
+  if(x == -1)
+    printf("Underflow!!");
+  else if(x == 1)
+    printf("Overflow!!");
+  else
+    printf("Successful!!\n");
+  
+  printf("A: %d ",a[1] );
+ 
+}

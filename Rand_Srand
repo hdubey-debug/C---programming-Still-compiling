@@ -1,0 +1,46 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include<time.h>
+/*
+This program enumerates rand() and r=srand() function in C
+*/
+unsigned int seed = 1;
+
+int random(void)
+{
+  int rand;
+  static unsigned int a = 8191, c = 131071;
+  
+  rand = (a * seed + c)%2147483648;
+  
+  seed = rand; 
+  a = a * 524287;
+  c = c * 6700417;
+  
+  return rand;
+  
+}
+
+void srandom(unsigned int u_seed)
+{
+  seed = u_seed;
+}
+
+int main()
+{
+  time_t x; 
+  //get the time of the system
+  time(&x);
+  // x = time(NULL)
+  printf("Time: %lu\n",x);
+  //create random numbers
+ 
+  srandom(x);
+  for(int i =0; i< 5; i++)
+  {
+    printf("%d\n", random());
+  }
+}
+
+
+
